@@ -1,37 +1,41 @@
 ﻿using ConsoleApp5;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-class Program
+public class Program
 {
-     static void Main(string[] args)
+    public static void Main()
     {
-        // Task 1: Creating Variables
-        var variables = new Variables();
-        variables.GetNumbers();
+        try
+        {
+            var c1 = new Circle(1); // Test case 1: Positive radius
+            Console.WriteLine(c1);
+        }
+        catch (InvalidRadiusException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
 
-        // Task 2: Looping and Input Validation
-        var input = new LoopingAndInput();
-        int low = input.GetPositiveNumber("Enter a positive low number: ");
-        int high = input.GetHighNumber(low);
+        try
+        {
+            // Test case 2: Negative radius
+            var c2 = new Circle(-1);
+            Console.WriteLine(c2);
+        }
+        catch (InvalidRadiusException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
 
-        // Task 3: Arrays and File I/0
-        var arrays = new Arrays();
-        int[] numbers = arrays.CreateNumberArray(low, high);
-        arrays.WriteToFile(numbers, "numbers.text");
-
-        // Additional tasks
-        int sum = arrays.CalculateSumFromFile("numbers.txt");
-        Console.WriteLine($"Sum of numbers: {sum}");
-
-        arrays.PrintPrimes(numbers);
-
-        Console.WriteLine("Press any key to exit.");
-        Console.ReadKey();
-
+        try
+        {
+            // Test case 3: Zero radius
+            var c3 = new Circle(0);
+            Console.WriteLine(c3);
+        }
+        catch (InvalidRadiusException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
     }
 }
 
